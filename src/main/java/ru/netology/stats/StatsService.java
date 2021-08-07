@@ -1,7 +1,6 @@
 package ru.netology.stats;
 
 public class StatsService {
-    int[] salesMonthly = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
     public long calculateTotalSalesSum(long[] salesMonthly) {
         long totalSalesSum = 0;
@@ -9,11 +8,16 @@ public class StatsService {
             totalSalesSum = totalSalesSum + salesPerMonth;
         }
         return totalSalesSum;
+
     }
 
-    public double calculateAverageSalesSum(long totalSalesSum, long[] salesMonthly) {
+    public double calculateAverageSalesSum(long[] salesMonthly) {
         int amountMonths = salesMonthly.length;
-        long averageSalesSum = totalSalesSum / amountMonths;
+        long totalSales = 0;
+        for (long salesPerMonth : salesMonthly) {
+            totalSales = totalSales + salesPerMonth;
+        }
+        double averageSalesSum = totalSales / amountMonths;
         return averageSalesSum;
     }
 
@@ -41,8 +45,40 @@ public class StatsService {
         return minMonth + 1;
     }
 
-    public int calculateMonthsAboveAverage (long[] salesMonthly) {
+    public int calculateMonthsUnderAverage(long[] salesMonthly) {
+        int amountMonths = salesMonthly.length;
+        long totalSales = 0;
+        for (long salesPerMonth : salesMonthly) {
+            totalSales = totalSales + salesPerMonth;
+        }
+        double averageSalesSum = totalSales / amountMonths;
 
-
+        int monthsUnderAverage = 0;
+        for (long underAverage : salesMonthly) {
+            if (underAverage < averageSalesSum) {
+                monthsUnderAverage++;
+            }
+        }
+        return monthsUnderAverage;
     }
+
+    public int calculateMonthsAboveAverage(long[] salesMonthly) {
+        int amountMonths = salesMonthly.length;
+        long totalSales = 0;
+        for (long salesPerMonth : salesMonthly) {
+            totalSales = totalSales + salesPerMonth;
+        }
+        double averageSalesSum = totalSales / amountMonths;
+
+        int monthsAboveAverage = 0;
+        for (long aboveAverage : salesMonthly) {
+            if (aboveAverage > averageSalesSum) {
+                monthsAboveAverage++;
+            }
+        }
+        return monthsAboveAverage;
+    }
+
+
+
 }
