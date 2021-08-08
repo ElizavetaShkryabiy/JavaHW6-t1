@@ -13,10 +13,8 @@ public class StatsService {
 
     public double calculateAverageSalesSum(long[] salesMonthly) {
         int amountMonths = salesMonthly.length;
-        long totalSales = 0;
-        for (long salesPerMonth : salesMonthly) {
-            totalSales = totalSales + salesPerMonth;
-        }
+        StatsService service = new StatsService();
+        long totalSales = service.calculateTotalSalesSum(salesMonthly);
         double averageSalesSum = totalSales / amountMonths;
         return averageSalesSum;
     }
@@ -46,12 +44,8 @@ public class StatsService {
     }
 
     public int calculateMonthsUnderAverage(long[] salesMonthly) {
-        int amountMonths = salesMonthly.length;
-        long totalSales = 0;
-        for (long salesPerMonth : salesMonthly) {
-            totalSales = totalSales + salesPerMonth;
-        }
-        double averageSalesSum = totalSales / amountMonths;
+       StatsService service = new StatsService() ;
+       double averageSalesSum = service.calculateAverageSalesSum(salesMonthly);
 
         int monthsUnderAverage = 0;
         for (long underAverage : salesMonthly) {
@@ -63,13 +57,8 @@ public class StatsService {
     }
 
     public int calculateMonthsAboveAverage(long[] salesMonthly) {
-        int amountMonths = salesMonthly.length;
-        long totalSales = 0;
-        for (long salesPerMonth : salesMonthly) {
-            totalSales = totalSales + salesPerMonth;
-        }
-        double averageSalesSum = totalSales / amountMonths;
-
+        StatsService service = new StatsService() ;
+        double averageSalesSum = service.calculateAverageSalesSum(salesMonthly);
         int monthsAboveAverage = 0;
         for (long aboveAverage : salesMonthly) {
             if (aboveAverage > averageSalesSum) {
@@ -78,7 +67,6 @@ public class StatsService {
         }
         return monthsAboveAverage;
     }
-
 
 
 }
